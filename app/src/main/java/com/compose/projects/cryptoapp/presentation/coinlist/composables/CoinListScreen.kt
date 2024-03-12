@@ -6,23 +6,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.compose.projects.cryptoapp.presentation.Screen
 import com.compose.projects.cryptoapp.presentation.coinlist.CoinListViewModel
-import com.editor.simplecomposetext.AppBar
-import com.editor.simplecomposetext.ui.theme.PaynearbyTheme
+import com.compose.projects.cryptoapp.ui.theme.CryptoAppTheme
 
 
 @Composable
@@ -32,12 +29,10 @@ fun CoinListScreen(
 ) {
 
     val state = viewModel.state.value
-    PaynearbyTheme {
+    CryptoAppTheme {
         Scaffold(
             topBar = {
-                AppBar("Coins List", Icons.Default.Home) {
-                    //Do Nothing
-                }
+                Text(text = "Coins List")
             }
         ) {
             Surface(
@@ -57,7 +52,7 @@ fun CoinListScreen(
                     if (state.error.isNotEmpty()) {
                         Text(
                             text = state.error,
-                            color = PaynearbyTheme.colors.error,
+                            color = MaterialTheme.colorScheme.error,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(16.dp)
@@ -73,12 +68,3 @@ fun CoinListScreen(
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun CoinListScreenPreview() {
-    PaynearbyTheme {
-
-    }
-}
-

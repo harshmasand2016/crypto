@@ -13,9 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -30,8 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.compose.projects.cryptoapp.presentation.coindetails.CoinDetailsViewModel
-import com.editor.simplecomposetext.AppBar
-import com.editor.simplecomposetext.ui.theme.PaynearbyTheme
+import com.compose.projects.cryptoapp.ui.theme.CryptoAppTheme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -39,12 +37,10 @@ fun CoinDetailsScreen(
     viewModel: CoinDetailsViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
-    PaynearbyTheme {
+    CryptoAppTheme {
         Scaffold(
             topBar = {
-                AppBar("${state.coin?.name}", Icons.Default.Home) {
-                    //Do Nothing
-                }
+                Text(text = "${state.coin?.name}")
             }
         ) {
             Surface(
@@ -131,7 +127,7 @@ fun CoinDetailsScreen(
                     if (state.error.isNotEmpty()) {
                         Text(
                             text = state.error,
-                            color = PaynearbyTheme.colors.error,
+                            color = MaterialTheme.colorScheme.error,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(16.dp)

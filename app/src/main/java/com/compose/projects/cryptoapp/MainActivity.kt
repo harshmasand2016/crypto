@@ -13,7 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.compose.projects.cryptoapp.presentation.Screen
 import com.compose.projects.cryptoapp.presentation.coindetails.composables.CoinDetailsScreen
 import com.compose.projects.cryptoapp.presentation.coinlist.composables.CoinListScreen
-import com.editor.simplecomposetext.ui.theme.PaynearbyTheme
+import com.compose.projects.cryptoapp.ui.theme.CryptoAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PaynearbyTheme {
+            CryptoAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

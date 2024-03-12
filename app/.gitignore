@@ -1,1 +1,5 @@
 /build
+/.idea
+/.gradle
+/setting.gradle.kts
+/gradle
