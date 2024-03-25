@@ -6,6 +6,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -17,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.compose.projects.cryptoapp.presentation.AppBarComposable
 import com.compose.projects.cryptoapp.presentation.Screen
 import com.compose.projects.cryptoapp.presentation.coinlist.CoinListViewModel
 import com.compose.projects.cryptoapp.ui.theme.CryptoAppTheme
@@ -32,7 +36,12 @@ fun CoinListScreen(
     CryptoAppTheme {
         Scaffold(
             topBar = {
-                Text(text = "Coins List")
+                AppBarComposable(
+                    titleText = "Coin List",
+                    titleNavigationIcon = Icons.AutoMirrored.Default.List
+                ) {
+                    //Do Nothing
+                }
             }
         ) {
             Surface(

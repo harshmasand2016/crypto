@@ -1,5 +1,6 @@
 package com.compose.projects.cryptoapp.presentation.coindetails.composables
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -11,27 +12,45 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberAsyncImagePainter
+import com.compose.projects.cryptoapp.presentation.AppBarComposable
 import com.compose.projects.cryptoapp.presentation.coindetails.CoinDetailsViewModel
 import com.compose.projects.cryptoapp.ui.theme.CryptoAppTheme
 
-@OptIn(ExperimentalLayoutApi::class)
+@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun CoinDetailsScreen(
     viewModel: CoinDetailsViewModel = hiltViewModel()
@@ -40,7 +59,12 @@ fun CoinDetailsScreen(
     CryptoAppTheme {
         Scaffold(
             topBar = {
-                Text(text = "${state.coin?.name}")
+                AppBarComposable(
+                    titleText = "Coin Details",
+                    titleNavigationIcon = Icons.AutoMirrored.Default.ArrowBack
+                ) {
+                    //Do Nothing
+                }
             }
         ) {
             Surface(
@@ -63,10 +87,20 @@ fun CoinDetailsScreen(
                                     verticalAlignment = Alignment.CenterVertically
 
                                 ) {
+                                    Image(
+                                        painter = rememberAsyncImagePainter(coin.logo),
+                                        contentDescription = "",
+                                        contentScale = ContentScale.FillBounds,
+                                        modifier = Modifier
+                                            .size(80.dp)
+                                            .weight(2f)
+
+                                    )
+                                    Spacer(modifier = Modifier.width(16.dp))
                                     Text(
                                         text = "${state.coin.name}(${state.coin.symbol})",
                                         overflow = TextOverflow.Ellipsis,
-                                        modifier = Modifier.weight(8f),
+                                        modifier = Modifier.weight(6f),
                                         fontSize = 20.sp,
                                         textDecoration = TextDecoration.Underline
                                     )
